@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 5000;
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -64,9 +63,13 @@ app.post('/api/users/login', (req, res)=>{
                 //토큰을 저장한다. 어디에?
                 //쿠키*, 로컬스토리지, 세션...
                 res.cookie("x_auth", user.token).status(200).json({loginSuccess:true, userId:user._id})
-            })
+            }) 
         })
     })
+})
+
+app.get("/", (req, res)=>{
+    res.json({"hello": "I am happy to deploy the app"})
 })
 
 app.get('/api/users/auth', auth , (req, res)=>{
@@ -93,5 +96,7 @@ app.get('/api/users/logout', auth, (req, res)=>{
             })
         })
 })
+//             헤로쿠 사용 시     사용 x시
+const port = process.env.PORT || 5000
 
-app.listen(port, ()=>console.log("server is running..."));
+app.listen(port, ()=>console.log(`server is running... at ${port}`));
