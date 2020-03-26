@@ -68,6 +68,10 @@ app.post('/api/users/login', (req, res)=>{
     })
 })
 
+app.get("/", (req, res)=>{
+    res.json({"hello": "I am happy to deploy the app"})
+})
+
 app.get('/api/users/auth', auth , (req, res)=>{
     //여기까지 미들웨어를 통과해 오면
     //authentication = true
