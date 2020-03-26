@@ -21,7 +21,10 @@ mongoose.connect(config.mongoURI,{
 
 
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get("/", (req, res)=>{
+    res.json({"hello": "I am happy to deploy the app"})
+})
+
 
 app.post('/api/users/register', (req, res)=>{
     //회원 가입 할때 필요한 정보들을 client에서 가져오면
@@ -68,9 +71,6 @@ app.post('/api/users/login', (req, res)=>{
     })
 })
 
-app.get("/", (req, res)=>{
-    res.json({"hello": "I am happy to deploy the app"})
-})
 
 app.get('/api/users/auth', auth , (req, res)=>{
     //여기까지 미들웨어를 통과해 오면
